@@ -4,11 +4,24 @@
 [![Total Downloads](https://img.shields.io/packagist/dt/minkhantnaung/laravel-telegram-topic-logger)](https://packagist.org/packages/minkhantnaung/laravel-telegram-topic-logger)
 [![License](https://img.shields.io/packagist/l/minkhantnaung/laravel-telegram-topic-logger)](LICENSE.md)
 
-A Laravel logging channel for sending logs to Telegram with topic/thread support. This package allows you to send application logs to Telegram groups or channels, optionally organizing them by topic threads.
+A Laravel custom logging channel that sends application logs to Telegram groups or channels, with full support for Telegram **topic threads** (`message_thread_id`) using Monolog v3.
 
 ![Example](example.png)
 
-> **Note:** This package supports both **public** and **private** Telegram groups and channels.
+> **Note:** This package supports public and private Telegram groups, supergroups, and channels.
+
+## Why use this package?
+
+- ✅ Supports Telegram **topic threads** (`message_thread_id`)
+- ✅ Works with Monolog v3 and Laravel 11+
+- ✅ Simple custom channel configuration
+- ✅ No third-party Telegram SDK required
+
+## Requirements
+
+- PHP >= 8.2
+- Laravel >= 11.0
+- Monolog >= 3.0
 
 ## Installation
 
@@ -76,6 +89,14 @@ Or add it to your stack:
 ],
 ```
 
+## Example: Sending Error Reports
+
+```php
+Log::channel('telegram_topic')->error(
+    "🚨 OTP Error\nUser ID: 123\nPhone: 09xxxxxx"
+);
+```
+
 ## Getting Your Telegram Bot Token
 
 1. Open Telegram and search for [@BotFather](https://t.me/botfather)
@@ -93,17 +114,14 @@ This package works with both **public** and **private** Telegram groups and chan
 
 ## Getting Your Thread ID (for Topics)
 
+> ⚠️ Telegram topics are available only in **supergroups**.  
+> If `thread_id` is not provided, messages will be sent to the **General** topic.
+
 1. Enable topics in your Telegram group
 2. Create a topic or use an existing one
 3. Send a message to the topic
 4. Visit `https://api.telegram.org/bot<YOUR_BOT_TOKEN>/getUpdates`
 5. Find the `message_thread_id` value in the response
-
-## Requirements
-
-- PHP >= 8.2
-- Laravel >= 11.0
-- Monolog >= 3.0
 
 ## License
 
