@@ -1,0 +1,101 @@
+# Laravel Telegram Topic Logger
+
+A Laravel logging channel for sending logs to Telegram with topic/thread support. This package allows you to send application logs to Telegram groups or channels, optionally organizing them by topic threads.
+
+## Installation
+
+You can install the package via Composer:
+
+```bash
+composer require minkhantnaung/laravel-telegram-topic-logger
+```
+
+## Configuration
+
+### 1. Publish the configuration file (optional)
+
+```bash
+php artisan vendor:publish --tag=telegram-topic-logger-config
+```
+
+### 2. Configure your logging channel
+
+Add a custom channel to your `config/logging.php` file:
+
+```php
+'channels' => [
+    // ... other channels ...
+
+    'telegram_topic' => [
+        'driver' => 'custom',
+        'via' => \Minkhantnaung\TelegramTopicLogger\TelegramTopicLogger::class,
+        'chat_id' => env('TELEGRAM_CHAT_ID'),
+        'thread_id' => env('TELEGRAM_THREAD_ID'), // Optional: for topic threads
+        'token' => env('TELEGRAM_BOT_TOKEN'),
+        'level' => env('TELEGRAM_LOG_LEVEL', 'debug'),
+    ],
+],
+```
+
+### 3. Environment Variables
+
+Add the following to your `.env` file:
+
+```env
+TELEGRAM_BOT_TOKEN=your_bot_token_here
+TELEGRAM_CHAT_ID=your_chat_id_here
+TELEGRAM_THREAD_ID=your_thread_id_here  # Optional
+TELEGRAM_LOG_LEVEL=debug
+```
+
+## Usage
+
+Once configured, you can use the logging channel in your application:
+
+```php
+Log::channel('telegram_topic')->info('This is an info message');
+Log::channel('telegram_topic')->error('This is an error message');
+Log::channel('telegram_topic')->warning('This is a warning message');
+```
+
+Or add it to your stack:
+
+```php
+'stack' => [
+    'driver' => 'stack',
+    'channels' => ['single', 'telegram_topic'],
+    'ignore_exceptions' => false,
+],
+```
+
+## Getting Your Telegram Bot Token
+
+1. Open Telegram and search for [@BotFather](https://t.me/botfather)
+2. Send `/newbot` and follow the instructions
+3. Copy the bot token provided
+
+## Getting Your Chat ID
+
+1. Add your bot to a group or channel
+2. Send a message to the group/channel
+3. Visit `https://api.telegram.org/bot<YOUR_BOT_TOKEN>/getUpdates`
+4. Find the `chat.id` value in the response
+
+## Getting Your Thread ID (for Topics)
+
+1. Enable topics in your Telegram group
+2. Create a topic or use an existing one
+3. Send a message to the topic
+4. Visit `https://api.telegram.org/bot<YOUR_BOT_TOKEN>/getUpdates`
+5. Find the `message_thread_id` value in the response
+
+## Requirements
+
+- PHP >= 8.2
+- Laravel >= 11.0
+- Monolog >= 3.0
+
+## License
+
+The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
+
