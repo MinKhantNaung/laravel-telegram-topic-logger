@@ -2,6 +2,10 @@
 
 A Laravel logging channel for sending logs to Telegram with topic/thread support. This package allows you to send application logs to Telegram groups or channels, optionally organizing them by topic threads.
 
+![Example](example.png)
+
+> **Note:** This package supports both **public** and **private** Telegram groups and channels.
+
 ## Installation
 
 You can install the package via Composer:
@@ -76,7 +80,9 @@ Or add it to your stack:
 
 ## Getting Your Chat ID
 
-1. Add your bot to a group or channel
+This package works with both **public** and **private** Telegram groups and channels.
+
+1. Add your bot to a group or channel (public or private)
 2. Send a message to the group/channel
 3. Visit `https://api.telegram.org/bot<YOUR_BOT_TOKEN>/getUpdates`
 4. Find the `chat.id` value in the response
