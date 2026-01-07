@@ -1,5 +1,9 @@
 # Laravel Telegram Topic Logger
 
+[![Latest Version](https://img.shields.io/packagist/v/minkhantnaung/laravel-telegram-topic-logger)](https://packagist.org/packages/minkhantnaung/laravel-telegram-topic-logger)
+[![Total Downloads](https://img.shields.io/packagist/dt/minkhantnaung/laravel-telegram-topic-logger)](https://packagist.org/packages/minkhantnaung/laravel-telegram-topic-logger)
+[![License](https://img.shields.io/packagist/l/minkhantnaung/laravel-telegram-topic-logger)](LICENSE.md)
+
 A Laravel logging channel for sending logs to Telegram with topic/thread support. This package allows you to send application logs to Telegram groups or channels, optionally organizing them by topic threads.
 
 ![Example](example.png)
