@@ -123,6 +123,11 @@ This package works with both **public** and **private** Telegram groups and chan
 4. Visit `https://api.telegram.org/bot<YOUR_BOT_TOKEN>/getUpdates`
 5. Find the `message_thread_id` value in the response
 
+## Support the project
+
+If this package helps you, please consider giving it a ⭐ on GitHub.
+It helps others discover the project and motivates further development.
+
 ## License
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
