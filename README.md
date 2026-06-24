@@ -13,14 +13,14 @@ A Laravel custom logging channel that sends application logs to Telegram groups 
 ## Why use this package?
 
 - ✅ Supports Telegram **topic threads** (`message_thread_id`)
-- ✅ Works with Monolog v3 and Laravel 11+
+- ✅ Works with Monolog v3 and Laravel 11, 12, and 13
 - ✅ Simple custom channel configuration
 - ✅ No third-party Telegram SDK required
 
 ## Requirements
 
-- PHP >= 8.2
-- Laravel >= 11.0
+- PHP >= 8.2 (PHP >= 8.3 is required when using Laravel 13)
+- Laravel 11, 12, or 13
 - Monolog >= 3.0
 
 ## Installation
